@@ -31,6 +31,19 @@
   color: #61dafb;
 }
 
+#otsikot{
+  color: darkgreen;
+}
+
+.posts{
+  color: black;
+  width: 700px;
+  border: 5px solid green;
+  padding: 50px;
+  margin: 20px;
+  margin-left: 230px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

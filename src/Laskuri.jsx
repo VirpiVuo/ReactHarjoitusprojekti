@@ -2,6 +2,10 @@ import './App.css';
 import React, {useState} from 'react';
 
 const Laskuri = (props) => {
+  //jos tiedetään viitattavan propsin nimi, esim tässä tapauksessa huomio, voidaan viitata myös suoraan 
+  //-> const Laskuri = ({huomio}), tällöin myöskään myöhemmin ei travitse käyttää props.huomio vaan pelkkä 
+  //huomio riittää
+  //propseja voi olla useita, ne vain erotetaan toisistaan pilkulla ja niihin voidaan viitata myöhemmin suoraan nimellä
 
 //komponentin tilan määritys
 const [luku, setLuku] = useState(0)
