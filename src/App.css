@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  color: blue;
+  color: black;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: medium;
 }
@@ -41,7 +41,8 @@
   border: 5px solid green;
   padding: 50px;
   margin: 20px;
-  margin-left: 230px;
+  margin:auto;
+  margin-bottom: 2%;
 }
 
 @keyframes App-logo-spin {

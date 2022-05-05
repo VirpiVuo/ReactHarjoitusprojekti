@@ -11,6 +11,8 @@ const [posts, setPosts] = useState([])
 //aluksi määritellään tila tyhjäksi taulukoksi []
 // http-pyynnöllä haetaan data ja setPosts-komennolla asetetaan data posts-tilaan
 
+const [showPosts, setShowPosts] = useState(false)
+
 useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts") 
     // hakee datan mutta ei vielä tee sille mitään
@@ -32,12 +34,12 @@ useEffect(() => {
   return (
     <>
 
-    <h2 id="otsikot">Posts from typicode</h2>
+    <h2 id="otsikot" onClick={() => setShowPosts(!showPosts)}>Posts from typicode<br></br>(Click to show or hide posts)</h2>
 
     {
-      posts && posts.map(p => 
+      showPosts && posts && posts.map(p => 
         <div className='posts' key={p.id}>
-        <h4>{p.id + " " + p.title}</h4><p>{p.body}</p>
+        <h5>Post number {p.id}</h5><h3>{p.title}</h3><p>{p.body}</p>
         </div>
         )
       //jos posts stateen on ehtinyt tulla jotain tietoa eli ei ole undifined niin mapataan postaukset

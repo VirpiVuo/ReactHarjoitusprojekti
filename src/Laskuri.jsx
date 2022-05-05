@@ -20,9 +20,9 @@ const [luku, setLuku] = useState(0)
 
     <button onClick={() => setLuku(luku + 1)}>+</button>
     <button onClick={() => setLuku(luku - 1)}>-</button>
-    <button onClick={() => setLuku(0)}>Reset</button>
+    <button onClick={() => setLuku(0)}>Reset</button><br></br>
 
-    <button onClick={props.huomio}>Paina tästä</button>
+    <button onClick={props.huomio}>Paina tästä</button><br></br>
 
       
     </>

@@ -22,11 +22,9 @@ const huomio = () => {
     <div className="App">
       <h1>Hello from React!</h1>
 
-      {!showPosts && <button onClick={() => setShowPosts(!showPosts)}>Näytä postaukset</button>}
+      {!showPosts && <button onClick={() => setShowPosts(!showPosts)}>Postaukset</button>}
 
       {showPosts && <button onClick={() => setShowPosts(!showPosts)}>Piilota postaukset</button>}
-
-      {showPosts && <Posts />}
 
     {showLaskuri && <Laskuri huomio={huomio}/>} 
     {/* välitetään laskurille huomio propsi  */}
@@ -37,10 +35,12 @@ const huomio = () => {
     {showLaskuri && <button onClick={() => setShowLaskuri(!showLaskuri)}>Piilota laskuri</button>}
     {/* jos showLaskurin tila on päinvastainen kuin oletustila, näkyy tämä */}
 
-    {!showLaskuri && <button onClick={() => setShowLaskuri(!showLaskuri)}>Näytä laskuri</button>}
+    {!showLaskuri && <button onClick={() => setShowLaskuri(!showLaskuri)}>Laskuri</button>}
     {/* jos showLaskurin tila on sama kuin oletustila, näkyy tämä */}
     
     <Viesti teksti="Tervehdys App-komponentista!"/>
+
+    {showPosts && <Posts />}
 
     </div>
   );
