@@ -3,6 +3,7 @@ import Laskuri from './Laskuri';
 import Viesti from './Viesti';
 import React, {useState} from 'react';
 import Posts from './Posts';
+import CustomerList from './CustomerList';
 
 const App = () => {
 
@@ -21,6 +22,8 @@ const huomio = () => {
   return (
     <div className="App">
       <h1>Hello from React!</h1>
+
+      <CustomerList />
 
       {!showPosts && <button onClick={() => setShowPosts(!showPosts)}>Postaukset</button>}
 
