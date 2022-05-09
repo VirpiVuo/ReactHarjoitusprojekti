@@ -2,6 +2,7 @@ import './App.css';
 import React, {useState, useEffect} from 'react';
 import CustomerService from './services/Customer'
 import Customer from './Customer';
+import CustomerAdd from './CustomerAdd';
 
 //useEffect- hook tulee ajetuksi aina kerran silloin kun komponentti latautuu
 
@@ -11,18 +12,27 @@ const CustomerList = () => {
 //komponentin tilan määritys
 const [customers, setCustomers] = useState([])
 const [showCustomers, setShowCustomers] = useState(false)
+const [addNew, setAddnew] = useState(false)
+//uuden lisäys oletuksena false eli oletuksena listausnäkymä missä ei uuden lisäystä näkyvissä
+//kun painetaan nappia muutetaan setAddnew päinvastaiseksi eli trueksi ja näytetään lisäys
 
 useEffect(() => {
     CustomerService.getAll()
     .then(data => {
         setCustomers(data)
     })
-},[]
+},[addNew] //kun lisäystila muuttuu, haetaan backendistä päivittynyt listaus
 )
   return (
     <>
 
-    <h2 onClick={() => setShowCustomers(!showCustomers)}>Customers</h2>
+    <h2><nobr style={{ cursor: 'pointer'}}
+    onClick={() => setShowCustomers(!showCustomers)}>Customers</nobr>
+
+    {!addNew && <button className='nappi' onClick={() => setAddnew(true)}>Add new</button>}</h2>
+
+    {/* tehdään ehdollinen renderöinti eli tarvitaan aaltosulkeet (jos setAddnew on true, näytetään tämä) */}
+    {addNew && <CustomerAdd setAddnew={setAddnew}/>}
      
      {
       //  loopissa loopataan customerit läpi ja jokaisesta tulee vuorollaan c

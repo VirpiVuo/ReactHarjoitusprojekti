@@ -46,14 +46,37 @@
 }
 
 .customerDetails{
-  background-color:rgb(190, 235, 190);
-  border-style:dashed;
-  width: 85%;
+  background-color:green;
+  border-style:double;
+  width: 95%;
   margin:auto;
   margin-bottom: 50px;
-  border-radius: 30px;
+  /* border-radius: 30px; */
   text-align: center;
-  
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.customerDiv{
+  background-color:green;
+  width: 600px;
+  border: 5px solid green;
+  /* padding: 50px; */
+  margin:auto;
+  margin-bottom: 2%;
+}
+
+.nappi{
+  border-radius: 10px;
+  margin-left: 10px;
+  background-color: gold;
+  color:white;
+}
+
+#addNew{
+  margin:auto;
+  max-width: 35%;
 }
 
 @keyframes App-logo-spin {
