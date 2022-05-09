@@ -1,9 +1,10 @@
 import './App.css';
 import React, {useState} from 'react';
 import CustomerService from './services/Customer'
-import CustomerList from './CustomerList';
+// import CustomerList from './CustomerList';
 
-const CustomerAdd = ({setAddnew}) => {
+const CustomerAdd = ({setAddnew, setIsPositive, setMessage, setShowMessage}) => {
+    //otetaan propsit vastaan CustomerList.jsx -komponentista
 
 //komponentin tilan määritys, määritetään jokaista input -kenttää vastaavat statet ja alustetaan tyhjäksi merkkijonoksi
 const [newCustomerId, setNewCustomerId] = useState("")
@@ -21,7 +22,7 @@ const [newPhone, setNewPhone] = useState("")
 const [newFax, setNewFax] = useState("")
 
 
-//Reactissa funktiot ovat nuolifunktioita, onSubmit tapahtumankäsittelijäfunktio
+//Reactissa funktiot ovat nuolifunktioita, onSubmit tapahtumankäsittelijän funktio
 const handleSubmit = (event) => {
     event.preventDefault() //estetään oletusarvoa tapahtumasta
     var newCustomer = { //luodaan uusi olio johon sijoitetaan statessa olevat, käyttäjän syöttämät tiedot
@@ -40,14 +41,28 @@ const handleSubmit = (event) => {
     // alert(newCustomer.companyName) tarkistus kulkeutuuko tieto oikein 
     CustomerService.create(newCustomer) //luodaan annetuilla tiedoilla uusi asiakkuus
     .then(response => {
-        if  (response.status == 200) {
-            alert("Added new Customer: " + newCustomer.companyName)
-            setAddnew(false) //jos kaikki ok, näytetään alert sekä vaihdetaan setAddnew -status takaisin oletukseen eli falseksi
+        if  (response.status === 200) {
+            setMessage("Added new Customer: " + newCustomer.companyName)
+            setShowMessage(true)
+            setIsPositive(true)
+
+            //lisätään timeout, muutaman sekunnin päästä näytettävä viesti piilotetaan 3000 millisekunnin eli 3 sekunninn kuluttua
+            setTimeout(() => {
+                setShowMessage(false)
+            }, 3000)
+
+            setAddnew(false) //jos kaikki ok, näytetään message sekä vaihdetaan setAddnew -status takaisin oletukseen eli falseksi
         }
     })
 
     .catch(error => { //vastine .then -komennolle, jos tapahtuu error
-        alert("Error")
+        setMessage(error)
+        setIsPositive(false)
+        setShowMessage(true)
+
+        setTimeout(() => {
+            setShowMessage(false)
+        }, 3000)
     })
 }
 

@@ -4,6 +4,7 @@ import Viesti from './Viesti';
 import React, {useState} from 'react';
 import Posts from './Posts';
 import CustomerList from './CustomerList';
+import Message from './Message';
 
 const App = () => {
 
@@ -12,6 +13,11 @@ const [showLaskuri, setShowLaskuri] = useState(false) //jos käytetään useStat
 //määritetään boolean-tyyppinen vakio showLaskuri jonka oletustila on false
 
 const [showPosts, setShowPosts] = useState(false)
+
+//Statet Messagen näyttämistä varten:
+const [showMessage, setShowMessage] = useState(false)
+const [message, setMessage] = useState("")
+const [isPositive, setIsPositive] = useState(false)
 
 //määritetään huomio -niminen funktio ja mitä tapahtuu sitä käytettäessä (alert)
 const huomio = () => {
@@ -23,7 +29,12 @@ const huomio = () => {
     <div className="App">
       <h1>Hello from React!</h1>
 
-      <CustomerList />
+      {/* Ehdollinen renderöinti siihen, milloin Message -komponenttia näytetään: */}
+      {showMessage && <Message message={message} isPositive={isPositive} /> }
+      {/* jos joku muu komponentti muuttaa Appissa määritettyjä stateja Messagen näyttämistä varten, määritetty viesti vastaanotetaan propsina messagessa */}
+      
+      {/* Välitetään CustomerList -komponentille Messageen liittyvät propsit, komponentti joka asettaa tiedot tarvitsee set- muuttujan */}
+      <CustomerList setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}/>
 
       {!showPosts && <button onClick={() => setShowPosts(!showPosts)}>Postaukset</button>}
 
