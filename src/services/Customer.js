@@ -14,4 +14,14 @@ const create = newCustomer => {
     return axios.post(baseUrl, newCustomer)
 }
 
-export default { getAll, create }
+//DELETE -metodi, parametriksi tarvitaan id
+const remove = id => {
+    return axios.delete(`${baseUrl}/${id}`)
+}
+
+//PUT -metodi (edit)
+const update = (object) => {
+    return axios.put(`${baseUrl}/${object.customerId}`, object)
+}
+
+export default { getAll, create, remove, update }

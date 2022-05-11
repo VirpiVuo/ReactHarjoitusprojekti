@@ -1,32 +1,33 @@
 import './App.css';
 import React, {useState} from 'react';
 import CustomerService from './services/Customer'
-// import CustomerList from './CustomerList';
 
-const CustomerAdd = ({setAddnew, setIsPositive, setMessage, setShowMessage}) => {
+const CustomerEdit = ({setEditCustomer, setIsPositive, setMessage, setShowMessage, theCustomer}) => {
     //otetaan propsit vastaan CustomerList.jsx -komponentista
+    //kun renderöidään edit- tila, otetaan propsina vastaan senhetkisen asiakkaan tiedot theCustomer -oliossa ja
+    //käytetään niitä pohjatietoina
 
-//komponentin tilan määritys, määritetään jokaista input -kenttää vastaavat statet ja alustetaan tyhjäksi merkkijonoksi
-const [newCustomerId, setNewCustomerId] = useState("")
-const [newCompanyName, setNewCompanyName] = useState("")
-const [newContactName, setNewContactName] = useState("")
-const [newContactTitle, setNewContactTitle] = useState("")
-const [newAddress, setNewAddress] = useState("")
+//komponentin tilan määritys, määritetään jokaista input -kenttää vastaavat oletusstatet joissa jo olion jo olemassaolevat arvot
+const [newCustomerId, setNewCustomerId] = useState(theCustomer.customerId)
+const [newCompanyName, setNewCompanyName] = useState(theCustomer.companyName)
+const [newContactName, setNewContactName] = useState(theCustomer.contactName)
+const [newContactTitle, setNewContactTitle] = useState(theCustomer.contactTitle)
+const [newAddress, setNewAddress] = useState(theCustomer.address)
 
-const [newCity, setNewCity] = useState("")
-const [newRegion, setNewRegion] = useState("")
-const [newPostalCode, setNewPostalCode] = useState("")
+const [newCity, setNewCity] = useState(theCustomer.city)
+const [newRegion, setNewRegion] = useState(theCustomer.region)
+const [newPostalCode, setNewPostalCode] = useState(theCustomer.postalCode)
 
-const [newCountry, setNewCountry] = useState("")
-const [newPhone, setNewPhone] = useState("")
-const [newFax, setNewFax] = useState("")
+const [newCountry, setNewCountry] = useState(theCustomer.country)
+const [newPhone, setNewPhone] = useState(theCustomer.phone)
+const [newFax, setNewFax] = useState(theCustomer.fax)
 
 
 //Reactissa funktiot ovat nuolifunktioita, onSubmit tapahtumankäsittelijän funktio
 const handleSubmit = (event) => {
     event.preventDefault() //estetään oletusarvoa tapahtumasta
-    var newCustomer = { //luodaan uusi olio johon sijoitetaan statessa olevat, käyttäjän syöttämät tiedot
-        customerId: newCustomerId.toUpperCase(),
+    var editedCustomer = { //luodaan uusi olio johon sijoitetaan statessa olevat, käyttäjän syöttämät tiedot
+        customerId: newCustomerId,
         companyName: newCompanyName,
         contactName: newContactName,
         contactTitle: newContactTitle,
@@ -38,20 +39,21 @@ const handleSubmit = (event) => {
         phone: newPhone,
         fax: newFax
     }
-    // alert(newCustomer.companyName) tarkistus kulkeutuuko tieto oikein 
-    CustomerService.create(newCustomer) //luodaan annetuilla tiedoilla uusi asiakkuus
+    // alert(editedCustomer.companyName) tarkistus kulkeutuuko tieto oikein 
+    CustomerService.update(editedCustomer) //muokataan asiakkaan tietoja annetuilla uusilla tiedoilla
     .then(response => {
         if (response.status === 200) {
-            setMessage("Added new Customer: " + newCustomer.companyName)
+            setMessage("Edited Customer " + editedCustomer.companyName + " succesfully!")
             setShowMessage(true)
-            setIsPositive(true)
+            setIsPositive(true) //eli luokaksi tulee määritelty "pos" ja näytetään App.css sille määritellyssä muodossa
 
             //lisätään timeout, muutaman sekunnin päästä näytettävä viesti piilotetaan 3000 millisekunnin eli 3 sekunninn kuluttua
             setTimeout(() => {
                 setShowMessage(false)
             }, 3000)
 
-            setAddnew(false) //jos kaikki ok, näytetään message sekä vaihdetaan setAddnew -status takaisin oletukseen eli falseksi
+            setEditCustomer(false) //jos kaikki ok, näytetään message sekä vaihdetaan setEditCustomer -status takaisin oletukseen eli falseksi
+            //jolloin ei renderöidä CustomerEdit- komponenttia 
         }
     })
 
@@ -67,14 +69,14 @@ const handleSubmit = (event) => {
 }
 
   return (
-    <div id="addNew">
-        <h2>Add new customer</h2>
+    <div id="addNew"> 
+    {/* käytetään samaa tyyliluokkaa kuin uuden asiakkaan lisäämisessä */}
+        <h2>Edit Customer</h2>
         {/* {addNew && <button onClick={() => setAddnew(!addNew)}>Sulje lisäysikkuna</button>} */}
 
         <form onSubmit={handleSubmit}>
             <div>
-            <input type="text" value={newCustomerId} onChange={({target}) => setNewCustomerId(target.value)} required
-            maxLenght="5" minLenght="5" placeholder='ID with 5 capital letters' />
+            <input type="text" value={newCustomerId} disabled />
             </div>
             <div>
             <input type="text" value={newCompanyName} onChange={({target}) => setNewCompanyName(target.value)} 
@@ -118,10 +120,10 @@ const handleSubmit = (event) => {
             </div>
             {/* <br></br> */}
             <input type="submit" value="Save" /> 
-            <input type="button" value="Back" onClick={() => setAddnew(false)}/>          
+            <input type="button" value="Back" onClick={() => setEditCustomer(false)}/>          
         </form>
 
     </div>
   )
 }
-export default CustomerAdd;
+export default CustomerEdit;

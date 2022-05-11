@@ -67,13 +67,6 @@
   margin-bottom: 2%;
 }
 
-.nappi{
-  border-radius: 10px;
-  margin-left: 10px;
-  background-color: gold;
-  color:white;
-}
-
 #addNew{
   margin:auto;
   max-width: 35%;
@@ -106,6 +99,27 @@
   margin-top: 10px;
   width: 70%;
   margin-left: 15%;
+}
+
+.nappi{
+  border-radius: 10px;
+  margin-left: 10px;
+  background-color: green;
+  color:white;
+}
+
+.poistoNappi {
+  border-radius: 10px;
+  /* margin-left: 50px;  */
+  background-color: crimson;
+  color:black;
+}
+
+.editNappi {
+  border-radius: 10px;
+  /* margin-left: 50px;  */
+  background-color: gold;
+  color:black;
 }
 
 @keyframes App-logo-spin {
