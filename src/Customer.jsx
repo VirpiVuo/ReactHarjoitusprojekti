@@ -99,5 +99,4 @@ else {
     </div>
   )
 }
-
 export default Customer;

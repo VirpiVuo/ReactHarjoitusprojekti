@@ -23,18 +23,27 @@ const [editCustomer, setEditCustomer] =useState(false)
 //lisätään asiakkaan muokkausta varten sille oma state, määrittää näytetäänkö luotua muokkauskomponenttia vai ei 
 //oletusarvona false = ei näytetä, kun boolean arvo muuttuu trueksi niin näytetään
 const [theCustomer, setTheCustomer] =useState(false) //tallennuspaikka Customer- oliolle jota halutaan lähteä muokkaamaan
+const [search, setSearch] = useState("") //state joka pitää sisällään dynaamisen hakukentän senhetkisen tilanteen
 
 useEffect(() => {
     CustomerService.getAll()
     .then(data => {
         setCustomers(data)
+        // window.scrollBy(0, -50000)
     })
 },[addNew, reload, editCustomer] //kun lisäystila, lataustila tai muokkaustila muuttuu, haetaan backendistä päivittynyt listaus
 )
 
+//hakukentän onChange -tapahtumankäsittelijä
+const handleSearchInputChange = (event) => {
+  setShowCustomers(true)
+  setSearch(event.target.value.toLowerCase())
+}
+
 const editTheCustomer = (customer) => {
   setTheCustomer(customer) 
   setEditCustomer(true)
+  // setShowCustomers(false)
 }
 
   return (
@@ -42,6 +51,11 @@ const editTheCustomer = (customer) => {
 
     <h2><nobr style={{ cursor: 'pointer'}}
     onClick={() => setShowCustomers(!showCustomers)}>Customers</nobr>
+
+    {!editCustomer && !addNew && 
+    <input id="search" placeholder="Search by Company Name " value={search} onChange={handleSearchInputChange} />
+    }
+    {/* jos editCustomer ja addNew -statet ovat false, näytetään hakukenttä */}
 
     {!addNew && <button className='nappi' onClick={() => setAddnew(true)}>Add new</button>}</h2>
 
@@ -54,12 +68,19 @@ const editTheCustomer = (customer) => {
 
      {
       //  loopissa loopataan customerit läpi ja jokaisesta tulee vuorollaan c
-         showCustomers && customers && customers.map(c => (
-             <Customer key={c.customerId} customer = {c} setIsPositive={setIsPositive} setMessage={setMessage}
-              setShowMessage={setShowMessage} reload={reload} reloadNow={reloadNow} editTheCustomer={editTheCustomer} />
+         !addNew && !editCustomer && showCustomers && customers && customers.map(c => 
+          {
+          const lowerCaseName = c.companyName.toLowerCase()
+          if (lowerCaseName.indexOf(search) > -1) {
+            return(
+            <Customer key={c.customerId} customer = {c} setIsPositive={setIsPositive} setMessage={setMessage}
+              setShowMessage={setShowMessage} reload={reload} reloadNow={reloadNow} editTheCustomer={editTheCustomer} 
+              />
              /* renderöidään luotu Customer-komponentti, viitataan komponentissa nimettyyn propsiin customer ja sen arvo on c */
             //  välitetään myös messgaeen liittyvät propsit Customer -komponentille samaan tapaan kuin on välitetty CustomerAddille
          )
+          }
+        }
          )
      }
 

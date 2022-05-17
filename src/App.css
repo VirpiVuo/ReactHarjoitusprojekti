@@ -70,7 +70,19 @@
 #addNew{
   margin:auto;
   max-width: 35%;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
 }
+
+input[type=text], select {
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
 .pos{
   color:green;
   background-color: lightgrey;
@@ -102,10 +114,33 @@
 }
 
 .nappi{
+  /* uuden lisäys -nappi */
   border-radius: 10px;
   margin-left: 10px;
   background-color: green;
   color:white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nappi:hover {
+  background-color: #45a049;
+}
+
+.takaisinNappi{
+  /* takaisin -nappi */
+  border-radius: 10px;
+  margin-left: 10px;
+  background-color: crimson;
+  color:black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.takaisinNappi:hover {
+  background-color: rgb(211, 93, 116);
 }
 
 .poistoNappi {
@@ -120,6 +155,10 @@
   /* margin-left: 50px;  */
   background-color: gold;
   color:black;
+}
+
+#search{
+  margin-left: 10px;
 }
 
 @keyframes App-logo-spin {

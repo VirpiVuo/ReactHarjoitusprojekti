@@ -76,53 +76,63 @@ const handleSubmit = (event) => {
 
         <form onSubmit={handleSubmit}>
             <div>
+            <label>Customer ID: </label><br></br>
             <input type="text" value={newCustomerId} disabled />
             </div>
             <div>
+            <label>Company Name: </label><br></br>
             <input type="text" value={newCompanyName} onChange={({target}) => setNewCompanyName(target.value)} 
             placeholder='Company Name' required/>
             </div>
             <div>
+            <label>Contact Name: </label><br></br>
             <input type="text" value={newContactName} onChange={({target}) => setNewContactName(target.value)} 
             placeholder='Contact Name' />
             </div>
             <div>
+            <label>Contact Title: </label><br></br>
             <input type="text" value={newContactTitle} onChange={({target}) => setNewContactTitle(target.value)}
             placeholder='Contact Title' />
             </div>
             <div>
+            <label>Address: </label><br></br>
             <input type="text" value={newAddress} onChange={({target}) => setNewAddress(target.value)}
              placeholder='Address' />
             </div>
             <div>
+            <label>City: </label><br></br>
             <input type="text" value={newCity} onChange={({target}) => setNewCity(target.value)} 
             placeholder='City' />
             </div>
             <div>
+            <label>Region: </label><br></br>
             <input type="text" value={newRegion} onChange={({target}) => setNewRegion(target.value)} 
             placeholder='Region' />
             </div>
             <div>
+            <label>Postal Code: </label><br></br>
             <input type="text" value={newPostalCode} onChange={({target}) => setNewPostalCode(target.value)} 
             placeholder='Postal Code' />
             </div>
             <div>
+            <label>Country: </label><br></br>
             <input type="text" value={newCountry} onChange={({target}) => setNewCountry(target.value)} 
             placeholder='Country' />
             </div>
             <div>
+            <label>Phone: </label><br></br>
             <input type="text" value={newPhone} onChange={({target}) => setNewPhone(target.value)} 
             placeholder='Phone' />
             </div>
             <div>
+            <label>Fax: </label><br></br>
             <input type="text" value={newFax} onChange={({target}) => setNewFax(target.value)} 
             placeholder='Fax' />
             </div>
             {/* <br></br> */}
-            <input type="submit" value="Save" /> 
-            <input type="button" value="Back" onClick={() => setEditCustomer(false)}/>          
+            <input type="submit" className='nappi' value="Save"/> 
+            <input type="button" className='takaisinNappi' value="Back" onClick={() => setEditCustomer(false)} />          
         </form>
-
     </div>
   )
 }
