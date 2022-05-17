@@ -29,7 +29,7 @@ useEffect(() => {
     CustomerService.getAll()
     .then(data => {
         setCustomers(data)
-        // window.scrollBy(0, -50000)
+        window.scrollBy(0, -700000)
     })
 },[addNew, reload, editCustomer] //kun lisäystila, lataustila tai muokkaustila muuttuu, haetaan backendistä päivittynyt listaus
 )
@@ -49,15 +49,15 @@ const editTheCustomer = (customer) => {
   return (
     <>
 
-    <h2><nobr style={{ cursor: 'pointer'}}
+    <h5><nobr style={{ cursor: 'pointer'}}
     onClick={() => setShowCustomers(!showCustomers)}>Customers</nobr>
 
     {!editCustomer && !addNew && 
-    <input id="search" placeholder="Search by Company Name " value={search} onChange={handleSearchInputChange} />
+    <input id="search" placeholder="Search by Company Name" value={search} onChange={handleSearchInputChange} />
     }
     {/* jos editCustomer ja addNew -statet ovat false, näytetään hakukenttä */}
 
-    {!addNew && <button className='nappi' onClick={() => setAddnew(true)}>Add new</button>}</h2>
+    {!addNew && <button className='nappi' onClick={() => setAddnew(true)}>Add new</button>}</h5>
 
     {/* tehdään ehdollinen renderöinti eli tarvitaan aaltosulkeet (jos setAddnew on true, näytetään tämä) */}
     {addNew && <CustomerAdd setAddnew={setAddnew} setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}/>}

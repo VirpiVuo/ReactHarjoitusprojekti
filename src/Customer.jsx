@@ -57,12 +57,12 @@ else {
   return (
       //palautetaan jokaiselle asiakkaalle div
     <div className='customerDiv'>
-    <h4 onMouseEnter={() => setShowDetails(true)} //kun hiiri viedään otsikon päälle, setShowDetails on true eli näytetään asiakkaan tiedot
+    <h5 onMouseEnter={() => setShowDetails(true)} //kun hiiri viedään otsikon päälle, setShowDetails on true eli näytetään asiakkaan tiedot
     onMouseLeave={() => setShowDetails(false)} //kun hiiri viedään pois otsikon päältä, setShowDetails on false eli ei näytetä asiakkaan tietoja
-    >{customer.companyName}<br></br><br></br>
-    <button className='editNappi' onClick={() => editTheCustomer(customer)}>Edit</button><br></br>
+    >{customer.companyName}, {customer.country}<br></br><br></br>
+    <button className='editNappi' onClick={() => editTheCustomer(customer)}>Edit</button>
     <button className='poistoNappi' onClick={() => deleteCustomer(customer)}>Delete</button>
-    </h4>
+    </h5>
 
     {/* esimerkki miten tehtäisin jos haluttaisiin painettava nappi asiakkaan lisätietojen avaamista varten */}
     {/* <h4 onClick={() => setShowDetails(!showDetails)}></h4> vaihdetaan tapahtumankäsittelija onClickiksi ja 

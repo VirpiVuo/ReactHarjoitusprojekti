@@ -1,18 +1,22 @@
-import './App.css';
-import React from 'react';
+// import './App.css';
+// import React from 'react';
 
-const Viesti = (props) => (
+// const Viesti = (props) => (
 
-    //jos komponentin ainoa tehtävä on palauttaa jotain ruudulle, ei tarvita aaltosulkeita eikä returnia
+//     //jos komponentin ainoa tehtävä on palauttaa jotain ruudulle, ei tarvita aaltosulkeita eikä returnia
 
-    <>
+//     <>
 
-    <p>{props.teksti}</p>
+//     <p>{props.teksti}</p>
     
-    </>
-  );
+//     </>
+//   );
 
-export default Viesti;
+// export default Viesti;
+
+//---- Viesti -komponentti jätetty pois sovelluksesta!!
+
+
 
 //actionit virtaavat alaspäin komponentilta toiselle ja propsit ylöspäin
 

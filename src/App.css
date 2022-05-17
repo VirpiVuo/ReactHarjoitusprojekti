@@ -148,6 +148,7 @@ input[type=text], select {
   /* margin-left: 50px;  */
   background-color: crimson;
   color:black;
+  margin-left: 5px;
 }
 
 .editNappi {
@@ -155,10 +156,12 @@ input[type=text], select {
   /* margin-left: 50px;  */
   background-color: gold;
   color:black;
+  margin-right: 5px;
 }
 
 #search{
   margin-left: 10px;
+  font-size: small;
 }
 
 @keyframes App-logo-spin {
